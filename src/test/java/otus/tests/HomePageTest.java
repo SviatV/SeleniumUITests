@@ -44,20 +44,21 @@ public class HomePageTest {
     mainPage.open()
             .waitForPageLoaded()
             .clickEarliestSpecializationCourse()
-            .checkCourseTitleIsDisplayed();
+            .checkCourseTitleDisplayed();
   }
 
   @Test
   public void selectLatestSpecializationCourse() {
     mainPage.open()
             .waitForPageLoaded()
-            .clickLatestSpecializationCourse();
+            .clickLatestSpecializationCourse().checkCourseTitleDisplayed();
   }
 
   @Test
-  public void clickCourseUsingMouse() {
+  public void clickPopularCourseUsingMouse() {
+    popularCourseName = ReadTestData.getProperty("popularCourseName");
     mainPage.open()
             .waitForPageLoaded()
-            .clickCourseUsingMouse();
+            .clickCourseUsingMouse(popularCourseName).checkCourseTitleDisplayed();
   }
 }

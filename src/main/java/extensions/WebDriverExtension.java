@@ -9,7 +9,8 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.WebDriver;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class WebDriverExtension implements BeforeEachCallback, AfterEachCallback {
   private WebDriver driver;
