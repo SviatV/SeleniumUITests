@@ -22,16 +22,16 @@ public class MainPage extends AbsBasePage {
   private final String path = System.getProperty("base.url");
   private final static Pattern DATE_MONTH_PATTERN = Pattern.compile("С (\\d{1,2} \\p{IsCyrillic}+) \\d+ месяцев?");
 
-  @FindBy(xpath = "//body/div[@id='__next']/div[1]/div[1]/div[1]/a[1]/img[1]")
+  @FindBy(xpath = "//*[@id='__next']//a[1]/img")
   private WebElement logo;
 
-  @FindBy(xpath = "//body/div[@id='__next']/div[1]/main[1]/div[1]/section[1]/div[1]/*//h5")
+  @FindBy(xpath = "//*[@id='__next']//section[1]//h5")
   private List<WebElement> popularCourseNames;
 
-  @FindBy(xpath = "//body/div[@id=\'__next\']/div[1]/main[1]/div[1]/section[2]/div[1]/*//h5")
+  @FindBy(xpath = "//*[@id='__next']//section[2]//h5")
   private List<WebElement> specializationCourseNames;
 
-  @FindBy(xpath = "//body/div[@id='__next']/div[1]/main[1]/div[1]/section[2]/div[1]/*//a//div//span")
+  @FindBy(xpath = "//*[@id='__next']//section[2]//span")
   private List<WebElement> specializationCourseDates;
 
   @FindBy(xpath = "//h1")

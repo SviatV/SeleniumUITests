@@ -1,12 +1,12 @@
 package factories;
 
 import exceptions.BrowserNotSupportedException;
-import factories.implementations.ChromeConfig;
-import factories.implementations.FirefoxConfig;
 import listeners.MouseListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.events.WebDriverListener;
+
+import java.util.concurrent.TimeUnit;
 
 public class WebDriverFactory implements IFactory<WebDriverListener> {
   private final String browserName = System.getProperty("browser");
@@ -15,10 +15,14 @@ public class WebDriverFactory implements IFactory<WebDriverListener> {
   public WebDriver create() {
     switch (browserName) {
       case "chrome": {
-        return new EventFiringDecorator<>(new MouseListener()).decorate(new ChromeConfig().configure());
+        WebDriver chromeDriver = BrowserFactory.getChromeDriver();
+        return new EventFiringDecorator<>(new MouseListener()).decorate(chromeDriver);
       }
       case "firefox": {
-        return new EventFiringDecorator<>(new MouseListener()).decorate(new FirefoxConfig().configure());
+        WebDriver firefoxDriver = BrowserFactory.getFirefoxDriver();
+        firefoxDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        firefoxDriver.manage().window().maximize();
+        return new EventFiringDecorator<>(new MouseListener()).decorate(firefoxDriver);
       }
       default: {
         throw new BrowserNotSupportedException(browserName);
